@@ -145,7 +145,7 @@ const homePage: HomePage = {
     "/uploads/zivy-klub/kurzy-hero.jpg",
     "/mirror/site/wp-content/uploads/2025/03/DSC_1562-1-2048x1363-1-1024x682.jpg",
     "/mirror/site/wp-content/uploads/2025/03/poslat-shiatsu-4-scaled-1-1024x683.jpg",
-    "/mirror/site/wp-content/uploads/2025/03/1A2A3806-%E2%80%93-kopia-2048x1365-1-1024x683.jpg",
+    "/mirror/site/wp-content/uploads/2025/03/1A2A3089-2048x1365-1-1024x683.jpg",
     "/mirror/site/wp-content/uploads/2025/03/1A2A3746-1024x683.jpg",
     "/mirror/site/wp-content/uploads/2025/03/image-2-1-scaled-e1741475000345-1024x645.jpg",
     "/uploads/zivy-klub/ocista-hero.jpg",

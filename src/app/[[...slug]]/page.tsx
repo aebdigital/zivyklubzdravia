@@ -134,7 +134,7 @@ function HomeView({ page }: { page: Extract<SitePage, { kind: "home" }> }) {
           ) : null}
         </div>
 
-        <div className="soft-card relative overflow-hidden rounded-[2rem] p-3">
+        <div className="soft-card relative self-start overflow-hidden rounded-[2rem] p-3">
           <div className="relative min-h-[30rem] overflow-hidden rounded-[1.5rem]">
             <Image
               src={page.hero.image}
@@ -202,13 +202,13 @@ function HomeView({ page }: { page: Extract<SitePage, { kind: "home" }> }) {
 
       <section data-reveal className="section-wrap py-10 lg:py-16">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="soft-card relative overflow-hidden rounded-[2rem] p-3">
-            <div className="relative min-h-[26rem] overflow-hidden rounded-[1.5rem] bg-[color:var(--mist)] lg:min-h-[30rem]">
+          <div className="soft-card relative self-start overflow-hidden rounded-[2rem] p-3">
+            <div className="relative min-h-[28rem] overflow-hidden rounded-[1.5rem] lg:min-h-[34rem]">
               <Image
                 src={page.story.image}
                 alt={page.story.title}
                 fill
-                className="object-contain object-top p-4"
+                className="object-cover object-[center_12%]"
               />
             </div>
           </div>
@@ -270,7 +270,7 @@ function HomeView({ page }: { page: Extract<SitePage, { kind: "home" }> }) {
           </div>
         </div>
 
-        <div className="mt-10 space-y-5 overflow-hidden">
+        <div className="relative left-1/2 mt-10 w-[95vw] -translate-x-1/2 space-y-5 overflow-hidden">
           <GalleryMarquee images={page.gallery.slice(0, 4)} reverse />
           <GalleryMarquee images={page.gallery.slice(4)} />
         </div>
@@ -323,7 +323,7 @@ function ServiceView({ page }: { page: Extract<SitePage, { kind: "service" }> })
           </div>
         </div>
 
-        <div className="soft-card relative overflow-hidden rounded-[2rem] p-3">
+        <div className="soft-card relative self-start overflow-hidden rounded-[2rem] p-3">
           <div className="relative min-h-[28rem] overflow-hidden rounded-[1.5rem]">
             <Image src={page.hero.image} alt={page.hero.imageAlt} fill className="object-cover" />
           </div>
@@ -465,7 +465,7 @@ function ContactView({ page }: { page: Extract<SitePage, { kind: "contact" }> })
           </div>
         </div>
 
-        <div className="soft-card relative overflow-hidden rounded-[2rem] p-3">
+        <div className="soft-card relative self-start overflow-hidden rounded-[2rem] p-3">
           <div className="relative min-h-[24rem] overflow-hidden rounded-[1.5rem]">
             <Image src={page.hero.image} alt={page.hero.imageAlt} fill className="object-cover" />
           </div>

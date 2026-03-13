@@ -194,7 +194,7 @@
   }
 
   .marquee-card {
-    width: min(82vw, 27rem);
+    width: clamp(18rem, 29vw, 30rem);
     flex: 0 0 auto;
   }
 }
@@ -246,5 +246,11 @@
   .marquee-track,
   .marquee-track-reverse {
     animation: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .marquee-card {
+    width: 80vw;
   }
 }
