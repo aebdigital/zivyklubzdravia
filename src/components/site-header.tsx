@@ -81,7 +81,7 @@ export function SiteHeader({ navigation }: SiteHeaderProps) {
             onClick={() => setIsOpen(false)}
           />
 
-          <aside className="absolute right-0 top-0 flex h-full w-[86vw] max-w-sm flex-col overflow-hidden rounded-l-[2rem] border-l border-white/15 bg-[linear-gradient(135deg,#315433,#4d6f38)] px-6 pb-8 pt-6 text-white shadow-[0_30px_90px_rgba(17,27,20,0.45)]">
+          <aside className="mobile-nav-drawer absolute left-0 top-0 flex h-full w-full flex-col overflow-hidden bg-[linear-gradient(135deg,#315433,#4d6f38)] px-6 pb-8 pt-6 text-white shadow-[0_30px_90px_rgba(17,27,20,0.45)]">
             <div className="flex items-center justify-between">
               <p className="display-face text-3xl text-white">Navigácia</p>
               <button
