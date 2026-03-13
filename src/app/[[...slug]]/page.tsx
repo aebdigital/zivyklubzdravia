@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { InteractiveMapEmbed } from "@/components/interactive-map-embed";
 import { InquiryForm } from "@/components/inquiry-form";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -93,6 +94,50 @@ function GalleryMarquee({
       </div>
     </div>
   );
+}
+
+function interleaveSectionsWithGallery<T>(sections: T[], gallery: string[]) {
+  if (!gallery.length) {
+    return sections.map((section) => ({ type: "section" as const, section }));
+  }
+
+  const insertionPoints = gallery.map((_, index) =>
+    Math.min(
+      sections.length - 1,
+      Math.floor(((index + 1) * sections.length) / (gallery.length + 1))
+    )
+  );
+
+  const items: Array<
+    | { type: "section"; section: T }
+    | { type: "image"; image: string; imageIndex: number }
+  > = [];
+
+  let galleryIndex = 0;
+
+  sections.forEach((section, sectionIndex) => {
+    items.push({ type: "section", section });
+
+    while (galleryIndex < gallery.length && insertionPoints[galleryIndex] === sectionIndex) {
+      items.push({
+        type: "image",
+        image: gallery[galleryIndex],
+        imageIndex: galleryIndex,
+      });
+      galleryIndex += 1;
+    }
+  });
+
+  while (galleryIndex < gallery.length) {
+    items.push({
+      type: "image",
+      image: gallery[galleryIndex],
+      imageIndex: galleryIndex,
+    });
+    galleryIndex += 1;
+  }
+
+  return items;
 }
 
 function HomeView({ page }: { page: Extract<SitePage, { kind: "home" }> }) {
@@ -280,13 +325,30 @@ function HomeView({ page }: { page: Extract<SitePage, { kind: "home" }> }) {
 }
 
 function ServiceView({ page }: { page: Extract<SitePage, { kind: "service" }> }) {
+  let contentItems = interleaveSectionsWithGallery(page.sections, page.gallery);
+
+  if (page.slug === "diagnostika-zdravia") {
+    contentItems = contentItems.filter(
+      (item) => !(item.type === "image" && item.imageIndex === page.gallery.length - 1)
+    );
+  }
+
+  if (page.slug === "shiatsu" && page.gallery[0]) {
+    contentItems = [
+      { type: "section", section: page.sections[0] },
+      { type: "image", image: page.gallery[0], imageIndex: 0 },
+      { type: "section", section: page.sections[1] },
+      { type: "section", section: page.sections[2] },
+    ];
+  }
+
   return (
     <>
       <section
         data-reveal
         className="section-wrap grid gap-10 py-10 lg:grid-cols-[1fr_0.9fr] lg:py-16"
       >
-        <div className="flex flex-col justify-center">
+        <div className="order-2 flex flex-col justify-center lg:order-1">
           <span className="divider-title">{page.hero.eyebrow}</span>
           <h1 className="display-face mt-5 text-5xl leading-[0.97] text-[color:var(--forest)] sm:text-6xl">
             {page.title}
@@ -323,8 +385,8 @@ function ServiceView({ page }: { page: Extract<SitePage, { kind: "service" }> })
           </div>
         </div>
 
-        <div className="soft-card relative self-start overflow-hidden rounded-[2rem] p-3">
-          <div className="relative min-h-[28rem] overflow-hidden rounded-[1.5rem]">
+        <div className="order-1 soft-card relative self-start overflow-hidden rounded-[2rem] p-3 lg:order-2">
+          <div className="relative aspect-[5/4] overflow-hidden rounded-[1.5rem]">
             <Image src={page.hero.image} alt={page.hero.imageAlt} fill className="object-cover" />
           </div>
         </div>
@@ -340,36 +402,67 @@ function ServiceView({ page }: { page: Extract<SitePage, { kind: "service" }> })
 
       <section data-reveal className="section-wrap py-10 lg:py-14">
         <div className="grid gap-6 lg:grid-cols-2">
-          {page.sections.map((section) => (
-            <article key={section.title} data-reveal className="soft-card rounded-[2rem] p-8">
-              <h2 className="display-face text-3xl text-[color:var(--forest)]">{section.title}</h2>
+          {contentItems.map((item) =>
+            item.type === "section" ? (
+              (() => {
+                const shouldSpanWide =
+                  page.slug === "diagnostika-zdravia" &&
+                  item.section.title === "Zdravý deň s Martinom: Varenie, cvičenie a pohoda na mieru";
 
-              {section.text ? (
-                <div className="copy-flow mt-5 text-base leading-8 text-[color:var(--muted)]">
-                  {section.text.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
+                return (
+              <article
+                key={`${page.slug}-${item.section.title}`}
+                data-reveal
+                className={`soft-card rounded-[2rem] p-8 ${shouldSpanWide ? "lg:col-span-2" : ""}`}
+              >
+                <h2 className="display-face text-3xl text-[color:var(--forest)]">
+                  {item.section.title}
+                </h2>
+
+                {item.section.text ? (
+                  <div className="copy-flow mt-5 text-base leading-8 text-[color:var(--muted)]">
+                    {item.section.text.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                ) : null}
+
+                {item.section.bullets ? (
+                  <ul className="copy-flow mt-5 text-base leading-8 text-[color:var(--muted)]">
+                    {item.section.bullets.map((bullet) => (
+                      <li key={bullet} className="flex gap-3">
+                        <span className="mt-2 h-2.5 w-2.5 rounded-full bg-[color:var(--clay)]" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+
+                {item.section.note ? (
+                  <p className="mt-5 rounded-[1.25rem] bg-[color:var(--mist)] px-4 py-4 text-sm leading-7 text-[color:var(--forest)]">
+                    {item.section.note}
+                  </p>
+                ) : null}
+              </article>
+                );
+              })()
+            ) : (
+              <article
+                key={`${page.slug}-image-${item.imageIndex}`}
+                data-reveal
+                className="soft-card self-start overflow-hidden rounded-[2rem] p-3"
+              >
+                <div className="relative aspect-[5/4] overflow-hidden rounded-[1.5rem]">
+                  <Image
+                    src={item.image}
+                    alt={`${page.title} fotografia ${item.imageIndex + 1}`}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-              ) : null}
-
-              {section.bullets ? (
-                <ul className="copy-flow mt-5 text-base leading-8 text-[color:var(--muted)]">
-                  {section.bullets.map((bullet) => (
-                    <li key={bullet} className="flex gap-3">
-                      <span className="mt-2 h-2.5 w-2.5 rounded-full bg-[color:var(--clay)]" />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-
-              {section.note ? (
-                <p className="mt-5 rounded-[1.25rem] bg-[color:var(--mist)] px-4 py-4 text-sm leading-7 text-[color:var(--forest)]">
-                  {section.note}
-                </p>
-              ) : null}
-            </article>
-          ))}
+              </article>
+            )
+          )}
         </div>
       </section>
 
@@ -385,18 +478,25 @@ function ServiceView({ page }: { page: Extract<SitePage, { kind: "service" }> })
           </div>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {page.testimonials.map((review) => (
+            {page.testimonials.map((review, index) => {
+              const shouldSpanWide =
+                page.testimonials && page.testimonials.length % 3 === 2 && index === page.testimonials.length - 1;
+
+              return (
               <article
                 key={`${review.name}-${review.quote}`}
                 data-reveal
-                className="soft-card rounded-[2rem] p-7"
+                className={`soft-card self-start rounded-[2rem] p-7 ${
+                  shouldSpanWide ? "lg:col-span-2" : ""
+                }`}
               >
                 <p className="text-base leading-8 text-[color:var(--muted)]">“{review.quote}”</p>
                 <p className="mt-6 text-sm font-semibold uppercase tracking-[0.22em] text-[color:var(--sage)]">
                   {review.name}
                 </p>
               </article>
-            ))}
+              );
+            })}
           </div>
         </section>
       ) : null}
@@ -517,14 +617,10 @@ function ContactView({ page }: { page: Extract<SitePage, { kind: "contact" }> })
 
       <section data-reveal className="section-wrap py-10 lg:py-14">
         <div className="soft-card overflow-hidden rounded-[2rem] p-3">
-          <div className="overflow-hidden rounded-[1.5rem]">
-            <iframe
-              title="Mapa Živý Klub Zdravia"
-              src="https://maps.google.com/maps?q=Kuku%C4%8D%C3%ADnova+142%2F88%2C+901+01+Malacky&t=m&z=14&output=embed&iwloc=near"
-              className="h-[360px] w-full border-0"
-              loading="lazy"
-            />
-          </div>
+          <InteractiveMapEmbed
+            title="Mapa Živý Klub Zdravia"
+            src="https://maps.google.com/maps?q=Kuku%C4%8D%C3%ADnova+142%2F88%2C+901+01+Malacky&t=m&z=14&output=embed&iwloc=near"
+          />
         </div>
       </section>
     </>

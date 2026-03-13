@@ -49,7 +49,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="section-wrap flex flex-col gap-3 py-5 text-xs text-white/55 md:flex-row md:items-center md:justify-between">
+        <div className="section-wrap flex flex-col gap-3 py-5 text-sm text-white/55 md:flex-row md:items-center md:justify-between">
           <p>Copyright © 2025 Živý Klub Zdravia s.r.o.</p>
           <p>
             Tvorba stránky{" "}

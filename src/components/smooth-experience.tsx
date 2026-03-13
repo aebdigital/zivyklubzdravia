@@ -10,22 +10,15 @@ export function SmoothExperience() {
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let lenis: Lenis | null = null;
-    let rafId = 0;
 
     if (!prefersReducedMotion) {
       lenis = new Lenis({
+        autoRaf: true,
         smoothWheel: true,
         gestureOrientation: "vertical",
         lerp: 0.08,
         wheelMultiplier: 0.9,
       });
-
-      const raf = (time: number) => {
-        lenis?.raf(time);
-        rafId = window.requestAnimationFrame(raf);
-      };
-
-      rafId = window.requestAnimationFrame(raf);
     }
 
     const revealNodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
@@ -34,10 +27,6 @@ export function SmoothExperience() {
       revealNodes.forEach((node) => node.classList.add("is-visible"));
 
       return () => {
-        if (rafId) {
-          window.cancelAnimationFrame(rafId);
-        }
-
         lenis?.destroy();
       };
     }
@@ -69,10 +58,6 @@ export function SmoothExperience() {
 
     return () => {
       observer.disconnect();
-
-      if (rafId) {
-        window.cancelAnimationFrame(rafId);
-      }
 
       lenis?.destroy();
     };

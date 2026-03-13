@@ -17,6 +17,31 @@
     scroll-behavior: smooth;
   }
 
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  html.lenis.lenis-smooth {
+    scroll-behavior: auto;
+  }
+
+  .lenis:not(.lenis-autoToggle).lenis-stopped {
+    overflow: clip;
+  }
+
+  .lenis [data-lenis-prevent],
+  .lenis [data-lenis-prevent-wheel],
+  .lenis [data-lenis-prevent-touch],
+  .lenis [data-lenis-prevent-vertical],
+  .lenis [data-lenis-prevent-horizontal] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
   body {
     min-height: 100vh;
     margin: 0;
@@ -198,8 +223,12 @@
     flex: 0 0 auto;
   }
 
-  .mobile-nav-drawer {
+  .mobile-nav-drawer-in {
     animation: mobile-drawer-in 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mobile-nav-drawer-out {
+    animation: mobile-drawer-out 320ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
   .service-card {
@@ -308,6 +337,18 @@
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes mobile-drawer-out {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
   }
 }
 

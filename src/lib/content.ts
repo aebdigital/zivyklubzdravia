@@ -49,6 +49,7 @@ type ServicePage = {
   hero: HeroData;
   intro?: string;
   badges: string[];
+  gallery: string[];
   sections: ServiceSection[];
   testimonials?: { name: string; quote: string }[];
   formSubject: string;
@@ -170,6 +171,11 @@ const pages: Record<string, SitePage> = {
     },
     intro: undefined,
     badges: ["69 EUR / osoba", "Menu od raňajok po dezert", "Jedlo si spolu aj vychutnáme"],
+    gallery: [
+      "/uploads/zivy-klub/kurzy-hero.jpg",
+      "/uploads/zivy-klub/kurzy-home.jpg",
+      "/mirror/site/wp-content/uploads/2021/07/IMG_8800-3-1024x768.jpg",
+    ],
     formSubject: "Dopyt na kurz varenia",
     sections: [
       {
@@ -242,10 +248,15 @@ const pages: Record<string, SitePage> = {
       title: "Počas merania sa dozvieš, ako je na tom:",
       description:
         "Zenské a mužské orgány, tráviace ústrojenstvo, stav pečene, žlčníka a pankreasu, hladina vitamínov a minerálov, stav celkovej imunity, nervová sústava, stav štítnej žľazy, stav kožného kolagénu, srdcovo-cievny a obehový systém, stav kostí, hladina cukru v krvi, jedovaté a toxické látky v organizme, stav pľúc a dýchacieho ústrojenstva a funkcia obličiek.",
-      image: "/uploads/zivy-klub/diagnostika-bonsai.jpg",
-      imageAlt: "Diagnostika zdravia a pokojné prostredie",
+      image: "/mirror/site/wp-content/uploads/2025/03/1A2A3089-2048x1365-1-1024x683.jpg",
+      imageAlt: "Diagnostika zdravia a individuálna konzultácia",
     },
     badges: ["Individuálna konzultácia", "Výživa a doplnky", "Celodenný program s Martinom"],
+    gallery: [
+      "/uploads/zivy-klub/diagnostika-bonsai.jpg",
+      "/mirror/site/wp-content/uploads/2020/11/treatment-1327811_1280-1024x680.jpg",
+      "/mirror/site/wp-content/uploads/2025/03/image-2-1-scaled-e1741475000345-1024x645.jpg",
+    ],
     formSubject: "Dopyt na diagnostiku zdravia",
     sections: [
       {
@@ -309,6 +320,9 @@ const pages: Record<string, SitePage> = {
       imageAlt: "Shiatsu terapia",
     },
     badges: ["90 min základné ošetrenie", "120 min s kompletnou diagnostikou", "Vhodné aj počas tehotenstva"],
+    gallery: [
+      "/mirror/site/wp-content/uploads/2025/03/poslat-shiatsu-4-scaled-1-1024x683.jpg",
+    ],
     formSubject: "Dopyt na shiatsu terapiu",
     sections: [
       {
@@ -377,6 +391,11 @@ const pages: Record<string, SitePage> = {
       imageAlt: "Pravidelné očisty",
     },
     badges: ["5 dní jedla", "Ranné vyzdvihnutie v Bistre", "Balík PLUS aj s doplnkom"],
+    gallery: [
+      "/uploads/zivy-klub/ocista-hero.jpg",
+      "/mirror/site/wp-content/uploads/2025/03/1A2A3734-scaled-1-1024x683.jpg",
+      "/mirror/site/wp-content/uploads/2025/03/DSC_1562-1-2048x1363-1-1024x682.jpg",
+    ],
     formSubject: "Dopyt na pravidelnú očistu",
     sections: [
       {
@@ -404,6 +423,125 @@ const pages: Record<string, SitePage> = {
         ],
         note:
           "Platba: Po registrácii je potrebné očistu zaplatiť najneskôr 4 dni pred Vašim termínom buď v hotovosti v našom Bistre, alebo TU:",
+      },
+    ],
+  },
+  "spolocny-stol-radosti": {
+    kind: "service",
+    slug: "spolocny-stol-radosti",
+    title: "Spoločný stôl radosti",
+    description:
+      "Víkend plný varenia, pohybu a spoločného času v Penzióne Harmónia v Modre.",
+    hero: {
+      eyebrow: "Víkendový pobyt",
+      title: "Víkend plný varenia, pohybu a spoločného času",
+      description:
+        "Pozývam vás na víkendový pobyt pri veľkom stole, dobrom jedle a pokojnom tempe. Budeme spolu variť, jesť, hýbať sa, oddychovať a rozprávať sa o veciach, ktoré robia život jednoduchší a zdravší.",
+      image: "/uploads/spolocny-stol-radosti/zvonku.jpeg",
+      imageAlt: "Penzión Harmónia v Modre",
+    },
+    intro:
+      "Penzión Harmónia - Modra, časť Harmónia. Termín: 19. - 21. jún. Malá skupina do 8 ľudí. Cena: 220 EUR / osoba alebo 400 EUR za manželský pár.",
+    badges: [
+      "Penzión Harmónia - Modra, Harmónia",
+      "19. - 21. jún",
+      "220 EUR / osoba",
+      "400 EUR / pár",
+    ],
+    gallery: [
+      "/uploads/spolocny-stol-radosti/zvonku.jpeg",
+      "/uploads/spolocny-stol-radosti/stol.jpeg",
+      "/uploads/spolocny-stol-radosti/obyvacka.jpeg",
+    ],
+    formSubject: "Dopyt na pobyt Spoločný stôl radosti",
+    sections: [
+      {
+        title: "Pozvánka",
+        text: [
+          "Pozývam vás na víkendový pobyt, ktorý vznikol z jednoduchej myšlienky.",
+          "Veľký stôl. Dobré jedlo. Ľudia, ktorí majú chuť spomaliť a stráviť spolu čas.",
+          "Varenie je pre mňa viac než práca. Je to spôsob, ako sa stretnúť, ako sa porozprávať, ako si oddýchnuť a ako sa niečo naučiť o sebe aj o živote.",
+          "Počas tohto víkendu budeme spolu variť, jesť, hýbať sa, oddychovať a rozprávať sa o veciach, ktoré robia život jednoduchší a zdravší.",
+          "Nebude to len kurz varenia. Bude to spoločný čas pri jednom stole.",
+        ],
+      },
+      {
+        title: "Čo nás čaká",
+        text: [
+          "Počas pobytu budeme pripravovať vyváženú rastlinnú stravu, ktorá je jednoduchá, výživná a dá sa ľahko preniesť do bežného života.",
+          "Nebudeme len variť. Budeme sa spolu učiť rozumieť jedlu a tomu, ako nás ovplyvňuje.",
+          "Tieto veci vysvetlím jednoducho a prakticky tak, aby ste si z víkendu odniesli niečo, čo môžete používať každý deň.",
+        ],
+        bullets: [
+          "rovnováha yin a yang v jedle a živote",
+          "ako prispôsobiť stravu ročnému obdobiu",
+          "ako mení energiu potravín spôsob varenia, krájania a úpravy",
+          "prečo je dôležité jesť spolu a nie v rýchlosti",
+        ],
+      },
+      {
+        title: "Piatok",
+        bullets: [
+          "príchod",
+          "spoločné varenie večere",
+          "zoznámenie a prvé posedenie pri stole",
+        ],
+        note: "Program bude prirodzený a pokojný. Nebudeme sa nikam ponáhľať.",
+      },
+      {
+        title: "Sobota",
+        bullets: [
+          "ranné rozhýbanie tela",
+          "spoločná príprava raňajok, obeda a večere - nie je to povinné, môžete len prísť k stolu na jedlo",
+          "popoludňajší oddych alebo prechádzka v prírode",
+          "večera podľa počasia - grilovanie, opekanie na ohni, posedenie vonku alebo sauna",
+        ],
+        note:
+          "Keďže leto patrí podľa tradičnej čínskej medicíny elementu ohňa, budeme sa dotýkať aj tejto témy - energie radosti, pohybu, hudby a spoločnosti.",
+      },
+      {
+        title: "Nedeľa",
+        bullets: [
+          "pokojné ráno",
+          "spoločná príprava slávnostného obeda",
+          "záverečné posedenie pri stole",
+          "odchod domov",
+        ],
+      },
+      {
+        title: "Čo je v cene",
+        bullets: [
+          "ubytovanie na 2 noci",
+          "všetky spoločné jedlá - raňajky, obedy, večere",
+          "kurz a spoločné varenie",
+          "ranné pohybové rozcvičky",
+          "spoločný program počas víkendu",
+        ],
+      },
+      {
+        title: "Ubytovanie",
+        text: [
+          "Útulne zariadená chatka pre osem osôb je trojpodlažná a disponuje s jednou jednolôžkovou, s dvomi dvojlôžkovými a s jednou trojlôžkovou izbou.",
+          "Taktiež má priestrannú obývaciu miestnosť s televízorom, vybavenú kuchynku s jedálenským kútom a dve kúpeľne. Terasa ponúka príjemné posedenie v tieni stromov.",
+        ],
+      },
+      {
+        title: "Pre koho je pobyt vhodný",
+        bullets: [
+          "pre ľudí, ktorí majú radi jedlo a chcú sa naučiť variť jednoduchšie",
+          "pre tých, ktorí chcú spomaliť a na chvíľu vypnúť z každodenného tempa",
+          "pre ľudí, ktorí radi trávia čas v prírode",
+          "pre tých, ktorí chcú zažiť atmosféru spoločného stola",
+        ],
+        note:
+          "Skupina bude malá - maximálne 8 ľudí, aby sme mali dostatok priestoru na spoločný čas aj rozhovory.",
+      },
+      {
+        title: "Myšlienka do budúcna",
+        text: [
+          "Tento víkend je začiatok.",
+          "Ak sa myšlienka spoločného stola ujme, budú postupne vznikať ďalšie pobyty počas roka. Každý z nich sa môže viac venovať jednému z piatich elementov a tomu, ako ovplyvňuje jedlo, pohyb a náš život.",
+        ],
       },
     ],
   },
