@@ -69,7 +69,7 @@ export type SitePage = HomePage | ServicePage | ContactPage;
 export const navigation: NavigationItem[] = [
   { label: "Domov", href: "/" },
   { label: "Kurzy varenia", href: "/kurzy-varenia/" },
-  { label: "Diagnostika", href: "/diagnostika-zdravia/" },
+  { label: "Diagnostika zdravia", href: "/diagnostika-zdravia/" },
   { label: "Shiatsu", href: "/shiatsu/" },
   { label: "Očisty", href: "/pravidelne-ocisty/" },
   { label: "Kontakt", href: "/kontakt/" },
@@ -116,7 +116,7 @@ const homePage: HomePage = {
       image: "/mirror/site/wp-content/uploads/2025/03/poslat-shiatsu-4-scaled-1.jpg",
     },
     {
-      title: "Diagnostika",
+      title: "Diagnostika zdravia",
       href: "/diagnostika-zdravia/",
       description:
         "Získajte komplexný prehľad o svojom zdravotnom stave a individuálne rady na zlepšenie kondície. Na meraní zistíte, ktoré orgány potrebujú podporu, a naučíte sa, ako ich posilniť.",

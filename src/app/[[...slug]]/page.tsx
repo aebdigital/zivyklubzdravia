@@ -314,7 +314,7 @@ function ServiceView({ page }: { page: Extract<SitePage, { kind: "service" }> })
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/kontakt/" className="button-primary">
+            <Link href="#contact-form" className="button-primary">
               Chcem termín
             </Link>
             <Link href="/" className="button-secondary">
@@ -401,7 +401,7 @@ function ServiceView({ page }: { page: Extract<SitePage, { kind: "service" }> })
         </section>
       ) : null}
 
-      <section data-reveal className="section-wrap py-10 lg:py-16">
+      <section id="contact-form" data-reveal className="section-wrap py-10 lg:py-16">
         <div className="soft-card overflow-hidden rounded-[2rem]">
           <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
             <div className="relative min-h-[20rem]">
@@ -543,7 +543,7 @@ export default async function CatchAllPage({ params }: PageProps) {
         {page.kind === "service" ? <ServiceView page={page} /> : null}
         {page.kind === "contact" ? <ContactView page={page} /> : null}
       </main>
-      {page.kind === "home" ? null : <SiteFooter />}
+      <SiteFooter />
     </div>
   );
 }
