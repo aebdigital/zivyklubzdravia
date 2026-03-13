@@ -176,6 +176,27 @@
   .mirror-site-root {
     width: 100%;
   }
+
+  .marquee-shell {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0, black 8%, black 92%, transparent 100%);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 1.25rem;
+    animation: marquee-left 44s linear infinite;
+  }
+
+  .marquee-track-reverse {
+    animation-name: marquee-right;
+  }
+
+  .marquee-card {
+    width: min(82vw, 27rem);
+    flex: 0 0 auto;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -198,5 +219,32 @@
   [data-reveal].is-visible {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc(-50% - 0.625rem), 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translate3d(calc(-50% - 0.625rem), 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .marquee-track-reverse {
+    animation: none;
   }
 }

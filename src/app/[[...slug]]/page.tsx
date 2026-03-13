@@ -42,7 +42,57 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical,
     },
+    openGraph: {
+      title: page.title,
+      description: page.description,
+      url: canonical,
+      images: [
+        {
+          url: page.hero.image,
+          alt: page.hero.imageAlt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.title,
+      description: page.description,
+      images: [page.hero.image],
+    },
   };
+}
+
+function GalleryMarquee({
+  images,
+  reverse = false,
+}: {
+  images: string[];
+  reverse?: boolean;
+}) {
+  const items = [...images, ...images];
+
+  return (
+    <div className="marquee-shell">
+      <div className={`marquee-track ${reverse ? "marquee-track-reverse" : ""}`}>
+        {items.map((image, index) => (
+          <div
+            key={`${image}-${index}`}
+            className="marquee-card soft-card relative overflow-hidden rounded-[2rem] p-3"
+          >
+            <div className="relative h-56 overflow-hidden rounded-[1.5rem] bg-[color:var(--mist)] sm:h-64">
+              <Image
+                src={image}
+                alt={`Galéria ${index + 1}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 80vw, 28rem"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function HomeView({ page }: { page: Extract<SitePage, { kind: "home" }> }) {
@@ -220,23 +270,9 @@ function HomeView({ page }: { page: Extract<SitePage, { kind: "home" }> }) {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
-          {page.gallery.map((image, index) => (
-            <div
-              key={image}
-              className={`soft-card relative overflow-hidden rounded-[2rem] p-3 ${
-                index === 0 ? "md:row-span-2" : ""
-              }`}
-            >
-              <div
-                className={`relative overflow-hidden rounded-[1.5rem] ${
-                  index === 0 ? "min-h-[34rem]" : "min-h-[16rem]"
-                }`}
-              >
-                <Image src={image} alt={`Galéria ${index + 1}`} fill className="object-cover" />
-              </div>
-            </div>
-          ))}
+        <div className="mt-10 space-y-5 overflow-hidden">
+          <GalleryMarquee images={page.gallery.slice(0, 4)} reverse />
+          <GalleryMarquee images={page.gallery.slice(4)} />
         </div>
       </section>
     </>
