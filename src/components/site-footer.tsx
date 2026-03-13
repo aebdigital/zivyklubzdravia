@@ -4,10 +4,7 @@ import { contactDetails, navigation } from "@/lib/content";
 
 export function SiteFooter() {
   return (
-    <footer
-      data-reveal
-      className="mt-24 border-t border-[color:var(--line)] bg-[color:var(--forest)] text-white"
-    >
+    <footer className="mt-24 border-t border-[color:var(--line)] bg-[color:var(--forest)] text-white">
       <div className="section-wrap grid gap-10 py-14 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
         <div>
           <p className="display-face text-3xl">Živý Klub Zdravia</p>

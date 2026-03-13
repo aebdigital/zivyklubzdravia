@@ -167,10 +167,10 @@ function HomeView({ page }: { page: Extract<SitePage, { kind: "home" }> }) {
             <Link
               key={feature.href}
               href={feature.href}
-              className="soft-card group overflow-hidden rounded-[2rem]"
+              className="service-card soft-card group lg:min-h-[25rem]"
             >
-              <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
-                <div className="relative min-h-72 overflow-hidden">
+              <div className="grid gap-0 lg:min-h-[25rem] lg:grid-cols-[0.95fr_1.05fr]">
+                <div className="relative min-h-64 overflow-hidden lg:h-full lg:min-h-[25rem]">
                   <Image
                     src={feature.image}
                     alt={feature.title}
@@ -178,19 +178,19 @@ function HomeView({ page }: { page: Extract<SitePage, { kind: "home" }> }) {
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="flex flex-col justify-between p-7">
+                <div className="service-card-copy flex flex-col justify-between p-7">
                   <div>
-                    <p className="text-sm uppercase tracking-[0.24em] text-[color:var(--sage)]">
+                    <p className="service-card-index text-sm uppercase tracking-[0.24em] text-[color:var(--sage)] transition-colors duration-300 group-hover:text-white">
                       0{index + 1}
                     </p>
-                    <h3 className="display-face mt-4 text-3xl text-[color:var(--forest)]">
+                    <h3 className="service-card-title display-face mt-4 text-3xl text-[color:var(--forest)] transition-colors duration-300 group-hover:text-white">
                       {feature.title}
                     </h3>
-                    <p className="mt-4 text-base leading-7 text-[color:var(--muted)]">
+                    <p className="service-card-description mt-4 text-base leading-7 text-[color:var(--muted)] transition-colors duration-300 group-hover:text-white">
                       {feature.description}
                     </p>
                   </div>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--clay)]">
+                  <span className="service-card-link mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--clay)] transition-colors duration-300 group-hover:text-white">
                     Zistiť viac <span aria-hidden="true">→</span>
                   </span>
                 </div>
@@ -401,7 +401,11 @@ function ServiceView({ page }: { page: Extract<SitePage, { kind: "service" }> })
         </section>
       ) : null}
 
-      <section id="contact-form" data-reveal className="section-wrap py-10 lg:py-16">
+      <section
+        id="contact-form"
+        data-reveal
+        className="section-wrap scroll-mt-20 py-10 lg:scroll-mt-36 lg:py-16"
+      >
         <div className="soft-card overflow-hidden rounded-[2rem]">
           <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
             <div className="relative min-h-[20rem]">
