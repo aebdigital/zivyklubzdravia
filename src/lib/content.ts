@@ -73,6 +73,7 @@ export const navigation: NavigationItem[] = [
   { label: "Diagnostika zdravia", href: "/diagnostika-zdravia/" },
   { label: "Shiatsu", href: "/shiatsu/" },
   { label: "Očisty", href: "/pravidelne-ocisty/" },
+  { label: "Spoločný stôl radosti", href: "/spolocny-stol-radosti/" },
   { label: "Kontakt", href: "/kontakt/" },
 ];
 
