@@ -45,7 +45,7 @@ export async function POST(request: Request) {
   if (
     normalized.name.length < 2 ||
     normalized.email.length < 5 ||
-    normalized.message.length < 8
+    normalized.message.length < 3
   ) {
     return NextResponse.json(
       { message: "Prosím doplňte meno, email a krátku správu." },

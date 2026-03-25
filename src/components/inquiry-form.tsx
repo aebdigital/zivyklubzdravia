@@ -15,7 +15,7 @@ export function InquiryForm({ subject }: InquiryFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   const isReady = useMemo(() => {
-    return name.trim().length > 1 && email.trim().length > 4 && message.trim().length > 8;
+    return name.trim().length > 1 && email.trim().length > 4 && message.trim().length > 2;
   }, [email, message, name]);
 
   return (
